@@ -3,16 +3,18 @@ import java.awt.Polygon;
 
 public class Cube {
 	Polygon[] sides = new Polygon[6];
-	int Xoffset = 500, Yoffset = 400;
+	int Xoffset, Yoffset;
     int constZ = 50;
 	double[] centrePoint;
 	double[][] points3D;
 	int[][] points2D = new int[8][2];
-	double maxX, minY;
-	int[][] newOrder = new int[6][2];
 	
 	Cube(int size, double[] point0, int constXoffset, int constYoffset){
+		Xoffset = constXoffset;
+		Yoffset = constYoffset;
+		
 		centrePoint = new double[] {size/2, size/2, size/2};
+
 		double[][] tempPoints = {
 			{point0[0], point0[1], point0[2]},
 			{point0[0]+size, point0[1], point0[2]},
@@ -54,9 +56,17 @@ public class Cube {
 			points2D[i][1] = (int) ((points3D[i][2] * points3D[i][1]) / (points3D[i][2]+constZ));
 				
 		}
-
 	}
 
+	void calcRotation(){
+		double tempX, tempY;
+		//sve 3d - centre
+		// + rotation calc
+		//
+		for (int i = 0; i < points3D.length; i++) {
+
+		}
+	}
 
 	void sideOrder(){
 		

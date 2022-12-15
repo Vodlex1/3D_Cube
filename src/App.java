@@ -7,15 +7,9 @@ public class App {
         Gui gui = new Gui();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(1000, 1000);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.add(gui);
         gui.repaint();
         frame.setVisible(true);
-        
-        
     }
-
-    
-
 }
