@@ -13,3 +13,12 @@ public class App {
         frame.setVisible(true);
     }
 }
+
+/*      TO DO
+-fix rotation
+-fix forward/backward
+-make side order method
+-put cube objects in list
+-be able to switch through Cube objects and move them each
+ */
+

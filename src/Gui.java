@@ -16,7 +16,7 @@ public class Gui extends JPanel implements KeyListener{
 		this.addKeyListener(this);
 	}
 
-	Cube cube = new Cube(200, new double[] {60, 300, 200}, (int)width, (int)height);
+	Cube cube1 = new Cube(200, new double[] {60, 300, 200}, (int)width, (int)height);
 	Cube cube2 = new Cube(200, new double[] {260.0, 300.0, 200.0}, (int)width, (int)height);
 	Cube cube3 = new Cube(200, new double[] {460.0, 300.0, 200.0}, (int)width, (int)height);
 	Cube cube4 = new Cube(200, new double[] {660.0, 300.0, 200.0}, (int)width, (int)height);
@@ -27,7 +27,7 @@ public class Gui extends JPanel implements KeyListener{
 	public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g.create();
-		drawCube(g2d, cube);
+		drawCube(g2d, cube1);
 		drawCube(g2d, cube2);
 		drawCube(g2d, cube3);
 		drawCube(g2d, cube4);
@@ -60,16 +60,14 @@ public class Gui extends JPanel implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			cube.moveRight();
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			cube.moveLeft();
-		}else if(e.getKeyCode() == KeyEvent.VK_UP){
-			cube.moveUp();
-		}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			cube.moveDown();
-		}
-
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) cube1.moveRight();
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) cube1.moveLeft();
+		else if(e.getKeyCode() == KeyEvent.VK_UP) cube1.moveUp();
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN) cube1.moveDown();
+		else if(e.getKeyCode() == KeyEvent.VK_Q) cube1.rotateLeft();
+		else if(e.getKeyCode() == KeyEvent.VK_E) cube1.rotateRight();
+		else if(e.getKeyCode() == KeyEvent.VK_W) cube1.moveBackward();
+		else if(e.getKeyCode() == KeyEvent.VK_S) cube1.moveForward();
 		repaint();
 	}
 

@@ -8,6 +8,7 @@ public class Cube {
 	double[] centrePoint;
 	double[][] points3D;
 	int[][] points2D = new int[8][2];
+	double degrees = 0;
 	
 	Cube(int size, double[] point0, int constXoffset, int constYoffset){
 		Xoffset = constXoffset;
@@ -27,6 +28,7 @@ public class Cube {
 		};
 		
 		points3D = tempPoints;
+		
 		updateSides();
 		
     }
@@ -59,13 +61,19 @@ public class Cube {
 	}
 
 	void calcRotation(){
-		double tempX, tempY;
-		//sve 3d - centre
-		// + rotation calc
-		//
+		double tempZ, tempY;
+		double radians = Math.toRadians(degrees);
 		for (int i = 0; i < points3D.length; i++) {
+			tempZ = points3D[i][0];
+			tempY = points3D[i][1];
+			points3D[i][0] -= centrePoint[0];
+			points3D[i][0] = (tempZ * Math.cos(radians)) - (tempY * Math.sin(radians));
 
+			points3D[i][1] -= centrePoint[0];
+			points3D[i][1] = (tempY * Math.cos(radians)) + (tempZ * Math.sin(radians));
+			
 		}
+
 	}
 
 	void sideOrder(){
@@ -75,6 +83,31 @@ public class Cube {
 		}
 	}
 
+
+	void moveBackward(){
+		for (int i = 0; i < points3D.length; i++) {
+			points3D[i][2] += 10;		
+		}
+		constZ += 10;
+		updateSides();
+	}
+	void moveForward(){
+		for (int i = 0; i < points3D.length; i++) {
+			points3D[i][2] -= 10;			
+		}
+		constZ -= 10;
+		updateSides();
+	}
+	void rotateRight(){
+		degrees += 1;
+		calcRotation();
+		updateSides();
+	}
+	void rotateLeft(){
+		degrees -= 1;
+		calcRotation();
+		updateSides();
+	}
 	void moveLeft(){
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][0] -= 15;			
