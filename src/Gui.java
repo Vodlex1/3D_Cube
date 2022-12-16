@@ -64,10 +64,12 @@ public class Gui extends JPanel implements KeyListener{
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT) cube1.moveLeft();
 		else if(e.getKeyCode() == KeyEvent.VK_UP) cube1.moveUp();
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN) cube1.moveDown();
-		else if(e.getKeyCode() == KeyEvent.VK_Q) cube1.rotateLeft();
-		else if(e.getKeyCode() == KeyEvent.VK_E) cube1.rotateRight();
-		else if(e.getKeyCode() == KeyEvent.VK_W) cube1.moveBackward();
-		else if(e.getKeyCode() == KeyEvent.VK_S) cube1.moveForward();
+		else if(e.getKeyCode() == KeyEvent.VK_A) cube1.rotateLeft();
+		else if(e.getKeyCode() == KeyEvent.VK_D) cube1.rotateRight();
+		else if(e.getKeyCode() == KeyEvent.VK_W) cube1.rotateFront();
+		else if(e.getKeyCode() == KeyEvent.VK_S) cube1.rotateBehind();
+		else if(e.getKeyCode() == KeyEvent.VK_Q) cube1.moveBackward();
+		else if(e.getKeyCode() == KeyEvent.VK_E) cube1.moveForward();
 		repaint();
 	}
 

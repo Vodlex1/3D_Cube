@@ -14,7 +14,7 @@ public class Cube {
 		Xoffset = constXoffset;
 		Yoffset = constYoffset;
 		
-		centrePoint = new double[] {size/2, size/2, size/2};
+		centrePoint = new double[] {(point0[0]/2)+size, (point0[1]/2)+size, (point0[2]/2)+size};
 
 		double[][] tempPoints = {
 			{point0[0], point0[1], point0[2]},
@@ -60,17 +60,27 @@ public class Cube {
 		}
 	}
 
-	void calcRotation(){
-		double tempZ, tempY;
+	void calcRotationX(){
+		double tempX, tempY;
 		double radians = Math.toRadians(degrees);
 		for (int i = 0; i < points3D.length; i++) {
-			tempZ = points3D[i][0];
-			tempY = points3D[i][1];
-			points3D[i][0] -= centrePoint[0];
-			points3D[i][0] = (tempZ * Math.cos(radians)) - (tempY * Math.sin(radians));
+			tempX = points3D[i][0] - centrePoint[0];
+			tempY = points3D[i][1] - centrePoint[1];
+			points3D[i][0] = (tempX * Math.cos(radians)) - (tempY * Math.sin(radians))  + centrePoint[0];
+			points3D[i][1] = (tempY * Math.cos(radians)) + (tempX * Math.sin(radians))  + centrePoint[1];
+			
+		}
 
-			points3D[i][1] -= centrePoint[0];
-			points3D[i][1] = (tempY * Math.cos(radians)) + (tempZ * Math.sin(radians));
+	}
+
+	void calcRotationZ(){
+		double tempZ, tempY2;
+		double radians = Math.toRadians(degrees);
+		for (int i = 0; i < points3D.length; i++) {
+			tempZ = points3D[i][2] - centrePoint[2];
+			tempY2 = points3D[i][1] - centrePoint[1];
+			points3D[i][2] = (tempZ * Math.cos(radians)) - (tempY2 * Math.sin(radians)) + centrePoint[2];
+			points3D[i][1] = (tempY2 * Math.cos(radians)) + (tempZ * Math.sin(radians)) + centrePoint[1];
 			
 		}
 
