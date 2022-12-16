@@ -93,19 +93,24 @@ public class Cube {
 
 
 	void moveBackward(){
-		for (int i = 0; i < points3D.length; i++) {
-			points3D[i][2] += 10;		
+		if(constZ <= 340) {
+			return;
 		}
-		centrePoint[2] += 10;
-		constZ += 10;
-		updateSides();
+		else{
+			for (int i = 0; i < points3D.length; i++) {
+				points3D[i][2] -= 10;		
+			}
+			centrePoint[2] -= 10;
+			constZ -= 10;
+			updateSides();
+		}
 	}
 	void moveForward(){
 		for (int i = 0; i < points3D.length; i++) {
-			points3D[i][2] -= 10;			
+			points3D[i][2] += 10;			
 		}
-		centrePoint[2] -= 10;
-		constZ -= 10;
+		centrePoint[2] += 10;
+		constZ += 10;
 		updateSides();
 	}
 	void rotateFront(){
