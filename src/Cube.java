@@ -98,38 +98,52 @@ public class Cube {
 		constZ -= 10;
 		updateSides();
 	}
+	void rotateFront(){
+		degrees = 3;
+		calcRotationZ();
+		updateSides();
+	}
+	void rotateBehind(){
+		degrees = -3;
+		calcRotationZ();
+		updateSides();
+	}
 	void rotateRight(){
-		degrees += 1;
-		calcRotation();
+		degrees = 3;
+		calcRotationX();
 		updateSides();
 	}
 	void rotateLeft(){
-		degrees -= 1;
-		calcRotation();
+		degrees = -3;
+		calcRotationX();
 		updateSides();
 	}
 	void moveLeft(){
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][0] -= 15;			
 		}
+		centrePoint[0] -= 15;
 		updateSides();
 	}
 	void moveRight(){
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][0] += 15;			
 		}
+		centrePoint[0] += 15;
 		updateSides();
 	}
 	void moveUp(){
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][1] -= 15;			
 		}
+		centrePoint[1] -= 15;
 		updateSides();
 	}
 	void moveDown(){
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][1] += 15;			
 		}
+		centrePoint[1] += 15;
 		updateSides();
 	}
 
