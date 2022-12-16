@@ -46,10 +46,8 @@ public class Cube {
 		sides[4] = new Polygon(	new int[] {points2D[3][0]+Xoffset, points2D[2][0]+Xoffset, points2D[6][0]+Xoffset, points2D[7][0]+Xoffset},
 								new int[] {points2D[3][1]+Yoffset, points2D[2][1]+Yoffset, points2D[6][1]+Yoffset, points2D[7][1]+Yoffset}, 4);
 		sides[5] = new Polygon(	new int[] {points2D[2][0]+Xoffset, points2D[0][0]+Xoffset, points2D[4][0]+Xoffset, points2D[6][0]+Xoffset},
-								new int[] {points2D[2][1]+Yoffset, points2D[0][1]+Yoffset, points2D[4][1]+Yoffset, points2D[6][1]+Yoffset}, 4);
-								
+								new int[] {points2D[2][1]+Yoffset, points2D[0][1]+Yoffset, points2D[4][1]+Yoffset, points2D[6][1]+Yoffset}, 4);						
 	}
-
 
     void calcPos2D(){
 
@@ -90,7 +88,6 @@ public class Cube {
 			
 		}
 	}
-
 
 	void moveBackward(){
 		if(constZ <= 340) {

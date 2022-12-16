@@ -10,6 +10,7 @@ public class Gui extends JPanel implements KeyListener{
 	double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2;
 	double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2;
 	Cube[] cubes;
+	int cubeID = 0; 
 
 	public Gui(int cubeNum) {
 		int temp1 = 50;
@@ -61,16 +62,26 @@ public class Gui extends JPanel implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) cubes[0].moveRight();
-		else if(e.getKeyCode() == KeyEvent.VK_LEFT) cubes[0].moveLeft();
-		else if(e.getKeyCode() == KeyEvent.VK_UP) cubes[0].moveUp();
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN) cubes[0].moveDown();
-		else if(e.getKeyCode() == KeyEvent.VK_A) cubes[0].rotateLeft();
-		else if(e.getKeyCode() == KeyEvent.VK_D) cubes[0].rotateRight();
-		else if(e.getKeyCode() == KeyEvent.VK_W) cubes[0].rotateFront();
-		else if(e.getKeyCode() == KeyEvent.VK_S) cubes[0].rotateBehind();
-		else if(e.getKeyCode() == KeyEvent.VK_Q) cubes[0].moveBackward();
-		else if(e.getKeyCode() == KeyEvent.VK_E) cubes[0].moveForward();
+
+		int[] pressedNum = {KeyEvent.VK_1, KeyEvent.VK_2, KeyEvent.VK_3, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6, KeyEvent.VK_7, KeyEvent.VK_8, KeyEvent.VK_9};
+		for (int i = 0; i < 9; i++) {
+			if(e.getKeyCode() == pressedNum[i]){
+				cubeID = i;
+			}
+		}
+		
+
+
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) cubes[cubeID].moveRight();
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) cubes[cubeID].moveLeft();
+		else if(e.getKeyCode() == KeyEvent.VK_UP) cubes[cubeID].moveUp();
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN) cubes[cubeID].moveDown();
+		else if(e.getKeyCode() == KeyEvent.VK_A) cubes[cubeID].rotateLeft();
+		else if(e.getKeyCode() == KeyEvent.VK_D) cubes[cubeID].rotateRight();
+		else if(e.getKeyCode() == KeyEvent.VK_W) cubes[cubeID].rotateFront();
+		else if(e.getKeyCode() == KeyEvent.VK_S) cubes[cubeID].rotateBehind();
+		else if(e.getKeyCode() == KeyEvent.VK_Q) cubes[cubeID].moveBackward();
+		else if(e.getKeyCode() == KeyEvent.VK_E) cubes[cubeID].moveForward();
 		repaint();
 	}
 
