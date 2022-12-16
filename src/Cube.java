@@ -14,7 +14,7 @@ public class Cube {
 		Xoffset = constXoffset;
 		Yoffset = constYoffset;
 		
-		centrePoint = new double[] {(point0[0]+size)/2, (point0[1]+size)/2, (point0[2]+size)/2};
+		centrePoint = new double[] {point0[0]+(size/2), point0[1]+(size/2), point0[2]+(size/2)};
 
 		double[][] tempPoints = {
 			{point0[0], point0[1], point0[2]},
@@ -96,6 +96,7 @@ public class Cube {
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][2] += 10;		
 		}
+		centrePoint[2] += 10;
 		constZ += 10;
 		updateSides();
 	}
@@ -103,6 +104,7 @@ public class Cube {
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][2] -= 10;			
 		}
+		centrePoint[2] -= 10;
 		constZ -= 10;
 		updateSides();
 	}
