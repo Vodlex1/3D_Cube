@@ -20,5 +20,6 @@ public class App {
 -make side order method
 -put cube objects in list
 -be able to switch through Cube objects and move them each
+-make perspective view
  */
 
