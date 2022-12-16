@@ -4,7 +4,7 @@ public class App {
 
     public static void main(String[] args){
         JFrame frame = new JFrame("frame");
-        Gui gui = new Gui(5);
+        Gui gui = new Gui(9);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -15,11 +15,7 @@ public class App {
 }
 
 /*      TO DO
--fix rotation
--fix forward/backward
 -make side order method
--put cube objects in list
--be able to switch through Cube objects and move them each
 -make perspective view
  */
 

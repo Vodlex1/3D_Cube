@@ -3,7 +3,7 @@ import java.awt.Polygon;
 
 public class Cube {
 	Polygon[] sides = new Polygon[6];
-	int Xoffset, Yoffset;
+	int Xoffset, Yoffset, size;
     int constZ = 800;
 	double[] centrePoint;
 	double[][] points3D;
@@ -13,7 +13,7 @@ public class Cube {
 	Cube(int size, double[] point0, int constXoffset, int constYoffset){
 		Xoffset = constXoffset;
 		Yoffset = constYoffset;
-		
+		this.size = size;
 		centrePoint = new double[] {point0[0]+(size/2), point0[1]+(size/2), point0[2]+(size/2)};
 
 		double[][] tempPoints = {
@@ -53,8 +53,7 @@ public class Cube {
 
 		for (int i = 0; i < 8; i++) {
 			points2D[i][0] = (int)((constZ * points3D[i][0]) / (points3D[i][2] + constZ));
-			points2D[i][1] = (int)((constZ * points3D[i][1]) / (points3D[i][2] + constZ));
-				
+			points2D[i][1] = (int)((constZ * points3D[i][1]) / (points3D[i][2] + constZ));	
 		}
 	}
 
@@ -90,15 +89,15 @@ public class Cube {
 	}
 
 	void moveBackward(){
-		if(constZ <= 340) {
+		if(centrePoint[2] <= -constZ+size) {
 			return;
 		}
 		else{
 			for (int i = 0; i < points3D.length; i++) {
-				points3D[i][2] -= 10;		
+				points3D[i][2] -= 10;	
+				System.out.println(points3D[i][2]);	
 			}
 			centrePoint[2] -= 10;
-			constZ -= 10;
 			updateSides();
 		}
 	}
@@ -107,7 +106,6 @@ public class Cube {
 			points3D[i][2] += 10;			
 		}
 		centrePoint[2] += 10;
-		constZ += 10;
 		updateSides();
 	}
 	void rotateFront(){
