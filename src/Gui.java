@@ -1,8 +1,14 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.IntStream;
+import static java.util.Comparator.comparingInt;
+
 
 import javax.swing.JPanel;
 
@@ -18,8 +24,8 @@ public class Gui extends JPanel implements KeyListener{
 		if(cubeNum > 9) System.out.println("number too high");
 		cubes = new Cube[cubeNum];
 		for (int i = 0; i < cubeNum; i++) {
-			cubes[i] = new Cube (200, new double[] {temp1, 300, 200}, (int)width, (int)height);
-			temp1 += 200;
+			cubes[i] = new Cube (100, new double[] {temp1, 300, 200}, (int)width, (int)height);
+			temp1 += 100;
 		}
 		
 		setFocusable(true);
@@ -42,7 +48,27 @@ public class Gui extends JPanel implements KeyListener{
 	
 
 	void drawCube(Graphics2D g2d, Cube cube) {
+		// System.out.print("sideOrder before sort: ");
+		// for (int i = 0; i < 8; i++) {
+		// 	System.out.print(cubes[0].sideOrder[i] + " ,");
+		// }
+		// System.out.println();
+		// Arrays.sort(cubes[0].sideOrder);
+
+		// System.out.print("sideOrder after sort: ");
+		// for (int i = 0; i < 8; i++) {
+		// 	System.out.print(cubes[0].sideOrder[i] + " ,");
+		// }
+		// System.out.println();
+
 		
+		g2d.setColor(Color.cyan);
+		// g2d.fillPolygon(cube.sides[cube.sideOrder[i]/(cube.sideOrder[i]/i)-1]);
+		
+		g2d.fillPolygon(cube.sides[minIndex(cube.sideOrder, 0)]);
+		System.out.println(minIndex(cube.sideOrder, 0));
+		
+
 		// g2d.setColor(Color.red);
 		// g2d.fillPolygon(cube.sides[0]);
 		// g2d.setColor(Color.green);
@@ -56,9 +82,19 @@ public class Gui extends JPanel implements KeyListener{
 		// g2d.setColor(Color.cyan);
 		// g2d.fillPolygon(cube.sides[4]);
 		for(int i = 0; i<6; i++) g2d.drawPolygon(cube.sides[i]);
-
-		
 	}
+
+	public int minIndex(int[] array, int a) {
+		int min = a;
+	
+		for (; a < array.length; a++) {
+		  if (array[a] < array[min]) {
+			min = a;
+		  }
+		}
+	
+		return min;
+	  }
 
 	@Override
 	public void keyPressed(KeyEvent e){

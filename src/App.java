@@ -4,7 +4,7 @@ public class App {
 
     public static void main(String[] args){
         JFrame frame = new JFrame("frame");
-        Gui gui = new Gui(9);
+        Gui gui = new Gui(1);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
