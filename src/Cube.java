@@ -8,13 +8,18 @@ public class Cube {
 	double[] centrePoint;
 	double[][] points3D;
 	int[][] points2D = new int[8][2];
-	double degrees = 0;
-	int[] sideOrder = new int[8];
+	double degrees = 0, dist;
+	double[] sideOrder = new double[6], viewPoint = new double[2];
+	double[][] centerOfSides;
 	
 	Cube(int size, double[] point0, int constXoffset, int constYoffset){
 		Xoffset = constXoffset;
 		Yoffset = constYoffset;
 		this.size = size;
+		
+		viewPoint[0] = constXoffset;
+		viewPoint[1] = constYoffset;
+
 		centrePoint = new double[] {point0[0]+(size/2), point0[1]+(size/2), point0[2]+(size/2)};
 
 		double[][] tempPoints = {
@@ -34,19 +39,42 @@ public class Cube {
 
 	void updateSides(){
 		calcPos2D();
-		sides[5] = new Polygon(	new int[] {points2D[0][0]+Xoffset, points2D[1][0]+Xoffset, points2D[3][0]+Xoffset, points2D[2][0]+Xoffset},
+		sides[0] = new Polygon(	new int[] {points2D[0][0]+Xoffset, points2D[1][0]+Xoffset, points2D[3][0]+Xoffset, points2D[2][0]+Xoffset},
 								new int[] {points2D[0][1]+Yoffset, points2D[1][1]+Yoffset, points2D[3][1]+Yoffset, points2D[2][1]+Yoffset}, 4);
-		sides[4] = new Polygon(	new int[] {points2D[4][0]+Xoffset, points2D[5][0]+Xoffset, points2D[7][0]+Xoffset, points2D[6][0]+Xoffset},
+		sides[1] = new Polygon(	new int[] {points2D[4][0]+Xoffset, points2D[5][0]+Xoffset, points2D[7][0]+Xoffset, points2D[6][0]+Xoffset},
 								new int[] {points2D[4][1]+Yoffset, points2D[5][1]+Yoffset, points2D[7][1]+Yoffset, points2D[6][1]+Yoffset}, 4);
-		sides[3] = new Polygon(	new int[] {points2D[0][0]+Xoffset, points2D[1][0]+Xoffset, points2D[5][0]+Xoffset, points2D[4][0]+Xoffset},
+		sides[2] = new Polygon(	new int[] {points2D[0][0]+Xoffset, points2D[1][0]+Xoffset, points2D[5][0]+Xoffset, points2D[4][0]+Xoffset},
 								new int[] {points2D[0][1]+Yoffset, points2D[1][1]+Yoffset, points2D[5][1]+Yoffset, points2D[4][1]+Yoffset}, 4);
-		sides[2] = new Polygon(	new int[] {points2D[1][0]+Xoffset, points2D[3][0]+Xoffset, points2D[7][0]+Xoffset, points2D[5][0]+Xoffset},
+		sides[3] = new Polygon(	new int[] {points2D[1][0]+Xoffset, points2D[3][0]+Xoffset, points2D[7][0]+Xoffset, points2D[5][0]+Xoffset},
 								new int[] {points2D[1][1]+Yoffset, points2D[3][1]+Yoffset, points2D[7][1]+Yoffset, points2D[5][1]+Yoffset}, 4);
-		sides[1] = new Polygon(	new int[] {points2D[3][0]+Xoffset, points2D[2][0]+Xoffset, points2D[6][0]+Xoffset, points2D[7][0]+Xoffset},
+		sides[4] = new Polygon(	new int[] {points2D[3][0]+Xoffset, points2D[2][0]+Xoffset, points2D[6][0]+Xoffset, points2D[7][0]+Xoffset},
 								new int[] {points2D[3][1]+Yoffset, points2D[2][1]+Yoffset, points2D[6][1]+Yoffset, points2D[7][1]+Yoffset}, 4);
-		sides[0] = new Polygon(	new int[] {points2D[2][0]+Xoffset, points2D[0][0]+Xoffset, points2D[4][0]+Xoffset, points2D[6][0]+Xoffset},
-								new int[] {points2D[2][1]+Yoffset, points2D[0][1]+Yoffset, points2D[4][1]+Yoffset, points2D[6][1]+Yoffset}, 4);	
-								sideVisibility();
+		sides[5] = new Polygon(	new int[] {points2D[2][0]+Xoffset, points2D[0][0]+Xoffset, points2D[4][0]+Xoffset, points2D[6][0]+Xoffset},
+								new int[] {points2D[2][1]+Yoffset, points2D[0][1]+Yoffset, points2D[4][1]+Yoffset, points2D[6][1]+Yoffset}, 4);
+		sideVisibility();
+	}
+
+	void sideVisibility(){
+		for (int i = 0; i < sideOrder.length; i++) {
+			sideOrder[i] = 0;
+		}
+		updateSideCenter();
+
+		for (int i = 0; i < 6; i++) {
+			dist = Math.sqrt(((centerOfSides[i][2]) * (centerOfSides[i][2])) + ((centerOfSides[i][1]) * (centerOfSides[i][1])));
+			sideOrder[i] = dist;
+			System.out.print(sideOrder[i] + ", ");
+		}
+		System.out.println();
+	}
+
+	void updateSideCenter(){
+		centerOfSides = new double[][] {{centrePoint[0], centrePoint[1]-(size/2), centrePoint[2]}, 
+										{centrePoint[0], centrePoint[1]+(size/2), centrePoint[2]}, 
+										{centrePoint[0], centrePoint[1], centrePoint[2]-(size/2)}, 
+										{centrePoint[0]+(size/2), centrePoint[1], centrePoint[2]}, 
+										{centrePoint[0], centrePoint[1], centrePoint[2]+(size/2)}, 
+										{centrePoint[0]-(size/2), centrePoint[1], centrePoint[2]}};
 	}
 
     void calcPos2D(){
@@ -80,19 +108,6 @@ public class Cube {
 		}
 	}
 
-	void sideVisibility(){
-		for (int i = 0; i < sideOrder.length; i++) {
-			sideOrder[i] = 0;
-		}
-		
-		for (int i = 0; i < 8; i++) {
-			sideOrder[i] += points2D[i][0];
-			sideOrder[i] += points2D[i][1];
-			System.out.print(sideOrder[i] + ", ");
-		}
-		System.out.println();
-	}
-
 	void moveBackward(){
 		if(centrePoint[2] <= -constZ+size) {
 			return;
@@ -106,6 +121,7 @@ public class Cube {
 			updateSides();
 		}
 	}
+
 	void moveForward(){
 		for (int i = 0; i < points3D.length; i++) {
 			points3D[i][2] += 10;			
