@@ -29,7 +29,6 @@ public class Gui extends JPanel implements KeyListener{
 		this.addKeyListener(this);
 	}
 
-
 	@Override
 	public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -41,10 +40,8 @@ public class Gui extends JPanel implements KeyListener{
         Toolkit.getDefaultToolkit().sync();
         g2d.dispose();
     }
-	
 
 	void drawCube(Graphics2D g2d, Cube cube) {
-		
 		g2d.setColor(Color.green);
 		if(cube.sideOrder[3] < cube.sideOrder[5]) g2d.fillPolygon(cube.sides[3]);
 		else g2d.fillPolygon(cube.sides[5]);
@@ -61,18 +58,6 @@ public class Gui extends JPanel implements KeyListener{
 		for(int i = 0; i<6; i++) g2d.drawPolygon(cube.sides[i]);
 	}
 
-	public int minIndex(double[] array, int a) {
-		int min = a;
-	
-		for (; a < array.length; a++) {
-		  if (array[a] < array[min]) {
-			min = a;
-		  }
-		}
-	
-		return min;
-	  }
-
 	@Override
 	public void keyPressed(KeyEvent e){
 
@@ -82,8 +67,6 @@ public class Gui extends JPanel implements KeyListener{
 				cubeID = i;
 			}
 		}
-		
-
 
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) cubes[cubeID].moveRight();
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT) cubes[cubeID].moveLeft();
@@ -98,13 +81,11 @@ public class Gui extends JPanel implements KeyListener{
 		repaint();
 	}
 
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-
 
 }

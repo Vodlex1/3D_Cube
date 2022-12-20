@@ -55,6 +55,7 @@ public class Cube {
 	}
 
 	void sideVisibility(){
+		double temp1, temp2;
 		for (int i = 0; i < sideOrder.length; i++) {
 			sideOrder[i] = 0;
 		}
@@ -63,6 +64,14 @@ public class Cube {
 		for (int i = 0; i < 6; i++) {
 			dist = Math.sqrt(((centerOfSides[i][2]) * (centerOfSides[i][2])) + ((centerOfSides[i][1]) * (centerOfSides[i][1])));
 			sideOrder[i] = dist;
+
+		}
+		temp1 = Math.sqrt(((centerOfSides[3][2]) * (centerOfSides[3][2])) + ((centerOfSides[3][0]) * (centerOfSides[3][0])));
+		sideOrder[3] = temp1;
+		temp2 = Math.sqrt(((centerOfSides[5][2]) * (centerOfSides[5][2])) + ((centerOfSides[5][0]) * (centerOfSides[5][0])));
+		sideOrder[5] = temp2;
+		
+		for (int i = 0; i < sideOrder.length; i++) {
 			System.out.print(sideOrder[i] + ", ");
 		}
 		System.out.println();
