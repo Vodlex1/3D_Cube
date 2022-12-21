@@ -62,13 +62,13 @@ public class Cube {
 		updateSideCenter();
 
 		for (int i = 0; i < 6; i++) {
-			dist = Math.sqrt(((centerOfSides[i][2]) * (centerOfSides[i][2])) + ((centerOfSides[i][1]) * (centerOfSides[i][1])));
+			dist = Math.sqrt(((centerOfSides[i][2]) * (centerOfSides[i][2])) + ((centerOfSides[i][1]) * (centerOfSides[i][1])))+centrePoint[0];
 			sideOrder[i] = dist;
 
 		}
-		temp1 = Math.sqrt(((centerOfSides[3][2]) * (centerOfSides[3][2])) + ((centerOfSides[3][0]) * (centerOfSides[3][0])));
+		temp1 = Math.sqrt(((centerOfSides[3][2]) * (centerOfSides[3][2])) + ((centerOfSides[3][0]) * (centerOfSides[3][0])))+centrePoint[0];;
 		sideOrder[3] = temp1;
-		temp2 = Math.sqrt(((centerOfSides[5][2]) * (centerOfSides[5][2])) + ((centerOfSides[5][0]) * (centerOfSides[5][0])));
+		temp2 = Math.sqrt(((centerOfSides[5][2]) * (centerOfSides[5][2])) + ((centerOfSides[5][0]) * (centerOfSides[5][0])))+centrePoint[0];;
 		sideOrder[5] = temp2;
 		
 		for (int i = 0; i < sideOrder.length; i++) {
@@ -78,12 +78,12 @@ public class Cube {
 	}
 
 	void updateSideCenter(){
-		centerOfSides = new double[][] {{centrePoint[0], centrePoint[1]-(size/2), centrePoint[2]}, 
-										{centrePoint[0], centrePoint[1]+(size/2), centrePoint[2]}, 
-										{centrePoint[0], centrePoint[1], centrePoint[2]-(size/2)}, 
-										{centrePoint[0]+(size/2), centrePoint[1], centrePoint[2]}, 
-										{centrePoint[0], centrePoint[1], centrePoint[2]+(size/2)}, 
-										{centrePoint[0]-(size/2), centrePoint[1], centrePoint[2]}};
+		centerOfSides = new double[][] {{points3D[0][0], points3D[0][1]+(size/2), points3D[0][2]+(size/2)},
+										{points3D[4][0], points3D[4][1]+(size/2), points3D[4][2]+(size/2)}, 
+										{points3D[0][0]+(size/2), points3D[0][1]+(size/2), points3D[0][2]}, 
+										{points3D[1][0], points3D[1][1]+(size/2), points3D[1][2]+(size/2)}, 
+										{points3D[3][0]-(size/2), points3D[3][1]+(size/2), points3D[3][2]}, 
+										{points3D[2][0], points3D[2][1]+(size/2), points3D[2][2]-(size/2)}};
 	}
 
     void calcPos2D(){
